@@ -1,8 +1,10 @@
-#dot takes two vectors and outputs and outputs the dot product
+
 def dot(vec01,vec02):
     '''
-    This function dot takes two vectors as its arguments then checks to see if they are of compatible dimensions.
-    Then if they are of compatible dimensions it will out the dot product.
+    This function dot takes two vectors as its arguments then checks to see if they are of compatible dimensions. It then
+    takes the first vector and multiples it to the second vector. This outputs is equal to total in my code. If
+    the two vectors are not of compatible dimensions then it will output Invalid input. The inputs are vec01,vec02 and
+    the output is total.
     '''
 
     n = len(vec01)
@@ -23,10 +25,12 @@ print (dot(testVec01,testVec02)) #outputs 10 which is correct
 #print (dot(testVec01,testVec03)) #outputs Invalid Input
 
 
-#vecSubtract takes two vectors and subtracts them from eachother
+
 def vecSubtract(vec03,vec04):
     '''
-    This function, vecSubtract, takes two vectors, checks if they are of compatible dimensions then if they are of compatible dimensions, subtract them
+    This function takes two vectors vec03 and vec04, then it will subtract the first vector by the second vector
+    and this will be set to be vec03 for every i then it will output vec03. This goes over the range of n which is the length
+    of the vectors.
     '''
 
     n = len(vec03) #the two variables to check if the length is the same
@@ -46,11 +50,12 @@ testVec06 = [2,1]
 print (vecSubtract(testVec04,testVec05)) #outputs [-1,-1,0] which is correct if you take testVec04 - testVec05
 #print (vecSubtract(testVec04,testVec06)) #outputs invalid input
 
-#Scalar times Vector Multiplication
+
 def scalarVecMulti(scalar,vec05):
     '''
-    This function takes a scalara and a vector as its arguments, then multiples the scalar to a vector, outputing the scalar*vector.
-    It does this by multiplying the scalar to the vector.
+    This function takes two inputs, scalar and vec05, then finds the length of vec05 since it is the length we need to multiply
+    the scalar on. Then it sets the multiplication back to vec05[i], which makes it so that every i is equal to that scalar*i for every i in n.
+    This will then output the new vec05.
     '''
     n = len(vec05)
     for i in range(n):
@@ -69,7 +74,7 @@ print (scalarVecMulti(testScalar01,testVec07))
 #print (scalarVecMulti(testScalar02,testVec07)) #This prints out ['scalar', 'scalar', 'scalar']
 #print (scalarVecMulti(testScalar01,testVec08)) #This prints out a typeerror of object of type 'int' has no len()
 
-#Infinity norm of a vector function
+
 def infNorm(vec06):
     '''
     This function takes a vector and searches through the absolute values for the max
@@ -83,10 +88,10 @@ def infNorm(vec06):
     large = 0  # The dummy variable, has to be here so that it has a base value for the if statement
     for i in range(len(vec06)):
 
-        while abs(vec06[i]) > abs(large): # Where it searches through the vector till large is the largest
-                                          # I use a while loop here because I want it to continue until the statement is false, which is what a while loop does.
+        if abs(vec06[i]) > abs(large): #It checks the index of i in vec06 until it. abs(large). is the biggest number in the vector vec06.
+
             large = vec06[i]
-    return abs(large)
+    return abs(large)  #I have to put abs here because I have large = vec06[i] not the abs(vec06[i]).
 
 testVec10 = [5,-7,2,6,3,2,1]
 testVec11 = 'trees'
@@ -95,19 +100,20 @@ print (infNorm(testVec10)) # Outputs 7 as it should
 #print (infNorm(testVec11)) #Outputs Bad operand type for abs(): 'str'
 #print (infNorm(testVec12)) #Outputs object of type 'int' has no len()
 
-#Normalizing the vector with respect to the infinity norm
 
 def normalize(vec07):
     '''
-    This function will do what I did above to find the infinity norm, then it will divide the vector by infNorm(vec06)).
-    This will give us the normalized vector.
+    This function takes a vector and searches through its index until it finds the largest absolute value number in it, large,
+    it does this by going through the range of vec07 and checking every i against large until large is equal to the biggest number.
+    It then takes that number and it divides the numbers n in vec07 by the absolute value of large and return those values, such that
+    we get the normalized vector.
     :param vec07: vector
     :return: vector
     '''
     #I copied and pasted the above code
     large = 0 # The dummy variable
     for i in range(len(vec07)):
-        while abs(vec07[i]) > abs(large): # Where it searches through the vector till large is the largest
+        if abs(vec07[i]) > abs(large): # Where it searches through the vector till large is the largest
             large = vec07[i]
 
     return [n/abs(large) for n in vec07] # Here is where you take the elements in vec07, n here, and divide it indivually by abs(large) that we got above.
@@ -119,4 +125,5 @@ testVec15 = 'birds'
 print (normalize(testVec13))  #outputs the answer: [0.2, -1.0, 0.4] which is correct for all of the elements in the vector divided by 5.
 #print (normalize(testVec14)) #outputs an error that says: object of type 'int' has no len()
 #print (normalize(testVec15)) #outputs an error that says: bad operand type for abs(): 'str'
+
 
